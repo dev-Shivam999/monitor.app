@@ -1,0 +1,15 @@
+{
+  "name": "screenstreamer-server",
+  "version": "1.0.0",
+  "description": "Node.js server to receive JPEG frames (WebSocket or MJPEG) and serve to admin viewers.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "dicer": "0.3.1",
+    "express": "4.19.2",
+    "morgan": "1.10.0",
+    "ws": "8.18.0"
+  }
+} 
