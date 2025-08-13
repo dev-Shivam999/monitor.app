@@ -1,0 +1,37 @@
+name: Dev
+
+on:
+  push:
+      branches:
+        - main
+
+
+jobs:
+ build-dev:
+    runs-on: ubuntu-latest
+
+    steps:
+     - name: checkout
+       uses: actions/checkout@4
+
+     - name: dockerLogin
+       uses: docker/login-action@2
+       with:
+         username: ${{secrets.Docker_Username}}  
+         password: ${{secrets.DockerPassword}}
+       
+     - name: build
+       run: docker run -t ${{secrets.Docker_Username}}/server:latest .
+
+     - name: push
+       run: docker  push ${{secrets.Docker_Username}}/server:latest
+     
+     - name: pull image
+       uses:  appleboy/ssh-action@v1.0.3
+       with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          script: |
+            docker run -p 8080:8080 -d --rm --name server ${{secrets.Docker_Username}}/server
+
