@@ -33,8 +33,8 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           script: |
-            docker stop server || true
-            docker rm server || true
-            docker rmi ${{ secrets.DOCKER_USERNAME }}/server:latest || true
-            docker pull ${{ secrets.DOCKER_USERNAME }}/server:latest
-            docker run -p 8080:8080 -d --rm --name server ${{ secrets.DOCKER_USERNAME }}/server:latest
+           sudo docker stop server || true
+           sudo docker rm server || true
+           sudo docker rmi ${{ secrets.DOCKER_USERNAME }}/server:latest || true
+           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/server:latest
+           sudo docker run -p 8080:8080 -d --rm --name server ${{ secrets.DOCKER_USERNAME }}/server:latest
