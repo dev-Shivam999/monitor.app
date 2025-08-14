@@ -4,7 +4,6 @@ const express = require('express');
 const morgan = require('morgan');
 const WebSocket = require('ws');
 const Dicer = require('dicer');
-
 const app = express();
 app.use(morgan('dev'));
 
